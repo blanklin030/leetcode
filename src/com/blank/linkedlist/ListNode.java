@@ -205,26 +205,31 @@ public class ListNode {
         if(head==null||head.next==null){
             return head;
         }
+        //创建空节点
         ListNode helper = new ListNode(0);
-        ListNode pre = helper;//pre=0|null
+        //创建排序节点
+        ListNode pre = helper;
+        //创建指针
         ListNode cur = head;
+        //创建下一个节点
         ListNode next = null;
         while(cur!=null){
+            //保存下一个节点
             next = cur.next;
+            //当排序节点的next不为空 且 排序节点的next值小于当前指针
             while(pre.next!=null && pre.next.val<cur.val){
+                //则移动到下一个指针，为了找到可插入的节点位置
                 pre = pre.next;
             }
+            //挂载排序节点到当前指针next节点
             cur.next = pre.next;
+            //将当前指针挂载到排序的next节点
             pre.next = cur;
             pre = helper;
+            //指针移动到下一个节点
             cur = next;
         }
         return helper.next;
     }
-
-    public static void main(String[] args) {
-
-    }
-    
 
 }
